@@ -8,14 +8,14 @@ public class DFA extends FiniteAutomata {
     private List<Character> inputs;
     private Map<CompositeKey, String> transition = new HashMap<>();
     private String startState;
-    private List<String> finalStates;
+    private Set<String> finalStates = new HashSet<>();
 
     public DFA(List<String> states, List<Character> inputs, List<List<String>> transition,
                     String startState, List<String> finalStates){
         this.states = states;
         this.inputs = inputs;
         this.startState = startState;
-        this.finalStates = finalStates;
+        this.finalStates.addAll(finalStates);
         for(List<String> ts : transition){
             this.transition.put(new CompositeKey(ts.get(0), ts.get(1).charAt(0)), ts.get(2));
         }
@@ -23,8 +23,11 @@ public class DFA extends FiniteAutomata {
 
     @Override
     public boolean isAccepted(String input){
-        // TODO add exact behavior of dfa
-        return true;
+        String q = startState;
+        for(char ch : input.toCharArray()){
+            q = transition.get(new CompositeKey(q, ch));
+        }
+        return finalStates.contains(q);
     }
 
     @Override

@@ -2,9 +2,9 @@ package entity;
 
 public class CompositeKey {
     private final Object key1;
-    private final Object key2;
+    private final char key2;
 
-    public CompositeKey(Object key1, Object key2) {
+    public CompositeKey(Object key1, char key2) {
         this.key1 = key1;
         this.key2 = key2;
     }
@@ -21,7 +21,7 @@ public class CompositeKey {
     public boolean equals(Object obj){
         if (!(obj instanceof CompositeKey)) return false;
         CompositeKey other = (CompositeKey) obj;
-        return this.key1.equals(other.key1) && this.key2.equals(other.key2);
+        return this.key1.equals(other.key1) && this.key2 == other.key2;
     }
 
     @Override
@@ -29,7 +29,7 @@ public class CompositeKey {
         final int prime = 37;
         int hashCode = 17;
         hashCode = prime * hashCode + key1.hashCode();
-        hashCode = prime * hashCode + key2.hashCode();
+        hashCode = prime * hashCode + key2;
         return hashCode;
     }
 }

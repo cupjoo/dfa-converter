@@ -17,7 +17,7 @@ public class DFA extends FiniteAutomata {
         this.startState = startState;
         this.finalStates = finalStates;
         for(List<String> ts : transition){
-            this.transition.put(new CompositeKey(ts.get(0), ts.get(1)), ts.get(2));
+            this.transition.put(new CompositeKey(ts.get(0), ts.get(1).charAt(0)), ts.get(2));
         }
     }
 

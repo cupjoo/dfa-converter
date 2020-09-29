@@ -32,7 +32,7 @@ public class DFA extends FiniteAutomata {
 
     @Override
     public void print(){
-        System.out.println("Q: "+states.toString());
+        System.out.println("Q: "+states);
         System.out.println("Sigma: "+inputs);
         System.out.println("Delta: as shown below");
         System.out.println("q0: "+startState);

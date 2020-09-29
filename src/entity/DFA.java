@@ -21,11 +21,13 @@ public class DFA extends FiniteAutomata {
         }
     }
 
+    @Override
     public boolean isAccepted(String input){
         // TODO add exact behavior of dfa
         return true;
     }
 
+    @Override
     public void print(){
         System.out.println("Q: "+states.toString());
         System.out.println("Sigma: "+inputs);

@@ -1,21 +1,23 @@
-import entity.DFA;
+import entity.FiniteAutomata;
 import io.FiniteAutomataReader;
 
 import java.io.*;
 
 public class Main {
     static BufferedReader br;
+    static int faCode = 1;
+    static String[] faName = {"dfa", "nfa"};
     static int caseNum = 1;
 
     public static void main(String[] args) throws IOException {
-        br = new BufferedReader(new FileReader("test/dfa/definition"+caseNum+".txt"));
-        DFA dfa = FiniteAutomataReader.readDFA(br);
-        dfa.print();
+        br = new BufferedReader(new FileReader("test/"+ faName[faCode]+"/definition"+caseNum+".txt"));
+        FiniteAutomata fa = FiniteAutomataReader.readFA(br, faCode);
+        fa.print();
 
-        br = new BufferedReader(new FileReader("test/dfa/tc"+caseNum+".txt"));
+        br = new BufferedReader(new FileReader("test/" + faName[faCode] + "/tc" + caseNum + ".txt"));
         String tc;
         while((tc = br.readLine()) != null){
-            dfa.check(tc);
+            fa.check(tc);
         }
     }
 }

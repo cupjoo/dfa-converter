@@ -1,5 +1,7 @@
 package entity;
 
+import entity.embedded.CompositeKey;
+
 import java.util.*;
 
 public class DFA extends FiniteAutomata {

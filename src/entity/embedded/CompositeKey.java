@@ -1,4 +1,4 @@
-package entity;
+package entity.embedded;
 
 public class CompositeKey {
     private final Object key1;

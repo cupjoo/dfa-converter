@@ -1,5 +1,8 @@
 package entity;
 
+import entity.embedded.CompositeKey;
+import entity.embedded.MultipleState;
+
 import java.util.*;
 
 import static java.util.stream.Collectors.toList;

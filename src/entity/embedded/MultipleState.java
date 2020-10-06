@@ -1,4 +1,4 @@
-package entity;
+package entity.embedded;
 
 import java.util.*;
 

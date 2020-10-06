@@ -13,7 +13,7 @@ public class CompositeKey {
         return key1;
     }
 
-    public Object getKey2(){
+    public char getKey2(){
         return key2;
     }
 

@@ -32,17 +32,19 @@ public class FiniteAutomataReader {
         while(st.hasMoreTokens()){
             sigma.add(st.nextToken().charAt(0));
         }
-        // read delta
-        for(int r = 0; r < q.size()*sigma.size(); r++){
-            delta.add(new ArrayList<>());
-            st = new StringTokenizer(br.readLine());
-            while(st.hasMoreTokens()){
-                delta.get(r).add(st.nextToken());
-            }
-        }
+        // read initial state and final states
         q0 = br.readLine();
+        st = new StringTokenizer(br.readLine());
+        while(st.hasMoreTokens()){
+            f.add(st.nextToken());
+        }
+        // read delta
         while((in = br.readLine()) != null){
-            f.add(in);
+            delta.add(new ArrayList<>());
+            st = new StringTokenizer(in);
+            while(st.hasMoreTokens()){
+                delta.get(delta.size()-1).add(st.nextToken());
+            }
         }
     }
 

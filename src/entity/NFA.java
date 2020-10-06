@@ -42,7 +42,9 @@ public class NFA extends FiniteAutomata{
                 CompositeKey key = new CompositeKey(now, in);
                 MultipleState next = new MultipleState();
                 for(String s : now.toList()){
-                    next.addAll(singleTransition.get(new CompositeKey(s, in)).toList());
+                    MultipleState multipleState = singleTransition.get(new CompositeKey(s, in));
+                    if(multipleState != null)
+                        next.addAll(multipleState.toList());
                 }
                 multiTransition.put(key, next);
                 if(!states.contains(next)){

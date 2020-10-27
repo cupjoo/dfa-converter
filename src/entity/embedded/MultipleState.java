@@ -25,7 +25,9 @@ public class MultipleState {
     }
 
     public List<String> toList(){
-        return new ArrayList<>(states);
+        List<String> collect = new ArrayList<>(states);
+        Collections.sort(collect);
+        return collect;
     }
 
     public boolean isFinal(List<String> finalState){
@@ -45,9 +47,7 @@ public class MultipleState {
 
     @Override
     public String toString(){
-        List<String> collect = new ArrayList<>(states);
-        Collections.sort(collect);
-        return collect.toString().replaceAll("\\s","");
+        return toList().toString().replaceAll("\\s","");
     }
 
     @Override

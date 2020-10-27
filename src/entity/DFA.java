@@ -5,12 +5,9 @@ import entity.embedded.CompositeKey;
 import java.util.*;
 
 public class DFA extends FiniteAutomata {
-
-    private List<String> states;
-    private List<Character> inputs;
-    private Map<CompositeKey, String> transition = new HashMap<>();
     private String startState;
-    private Set<String> finalStates = new HashSet<>();
+    private List<String> states;
+    private Map<CompositeKey, String> transition = new HashMap<>();
 
     public DFA(List<String> states, List<Character> inputs, List<List<String>> transition,
                     String startState, List<String> finalStates){

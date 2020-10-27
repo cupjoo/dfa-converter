@@ -1,0 +1,12 @@
+A B C D E F
+0 1 $
+A
+D
+A 0 E
+A 1 B
+B 1 C
+B $ D
+C 1 D
+E 0 F
+E B C
+F 0 D

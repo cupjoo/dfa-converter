@@ -5,9 +5,9 @@ import java.io.*;
 
 public class Main {
     static BufferedReader br;
-    static int faCode = 1;
-    static String[] faName = {"dfa", "nfa"};
-    static int caseNum = 2;
+    static int faCode = 2;
+    static String[] faName = {"dfa", "nfa", "enfa"};
+    static int caseNum = 1;
 
     public static void main(String[] args) throws IOException {
         br = new BufferedReader(new FileReader("test/"+ faName[faCode]+"/definition"+caseNum+".txt"));

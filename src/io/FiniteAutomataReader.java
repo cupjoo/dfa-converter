@@ -1,6 +1,7 @@
 package io;
 
 import entity.DFA;
+import entity.ENFA;
 import entity.FiniteAutomata;
 import entity.NFA;
 
@@ -52,8 +53,10 @@ public class FiniteAutomataReader {
         read(br);
         if(code == 0){
             return new DFA(q, sigma, delta, q0, f);
-        } else {
+        } else if(code == 1) {
             return new NFA(sigma, delta, q0, f);
+        } else {
+            return new ENFA(sigma, delta, q0, f);
         }
     }
 }

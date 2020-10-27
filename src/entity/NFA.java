@@ -12,6 +12,11 @@ public class NFA extends AbstractNFA{
     }
 
     @Override
+    void setInputs(List<Character> inputs) {
+        this.inputs = inputs;
+    }
+
+    @Override
     void setStartState(String startState) {
         this.startState.add(startState);
     }

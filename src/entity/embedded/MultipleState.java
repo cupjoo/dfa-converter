@@ -37,6 +37,10 @@ public class MultipleState {
         return false;
     }
 
+    public boolean isEmpty(){
+        return states.isEmpty();
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof MultipleState)) return false;

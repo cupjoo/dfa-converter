@@ -13,13 +13,13 @@ public abstract class AbstractNFA extends FiniteAutomata{
     protected List<String> startState = new ArrayList<>();
     protected Set<MultipleState> states = new HashSet<>();
     protected Map<CompositeKey, MultipleState> transition = new HashMap<>();
+    protected Map<CompositeKey, MultipleState> singleTransition = new HashMap<>();
 
     public AbstractNFA(List<Character> inputs, List<List<String>> transition,
                        String startState, List<String> finalStates){
         Queue<MultipleState> q = new ArrayDeque<>();
-        Map<CompositeKey, MultipleState> singleTransition = new HashMap<>();
 
-        this.inputs = inputs;
+        setInputs(inputs);
         for(List<String> ts : transition){
             String from = ts.get(0);
             char input = ts.get(1).charAt(0);
@@ -45,15 +45,19 @@ public abstract class AbstractNFA extends FiniteAutomata{
                     if(multipleState != null)
                         next.addAll(multipleStateToList(multipleState));
                 }
-                this.transition.put(key, next);
-                if(!states.contains(next)){
-                    states.add(next);
-                    q.offer(next);
+                if(!next.isEmpty()){
+                    this.transition.put(key, next);
+                    if(!states.contains(next)){
+                        states.add(next);
+                        q.offer(next);
+                    }
                 }
             }
         }
         dfa = toDFA();
     }
+
+    abstract void setInputs(List<Character> inputs);
 
     abstract void setStartState(String startState);
 
@@ -74,8 +78,9 @@ public abstract class AbstractNFA extends FiniteAutomata{
             ts.add(transition.get(ck).toString());
             dfaTransition.add(ts);
         }
+        String startState = this.startState.toString().replaceAll("\\s","");
         return new DFA(dfaStates, inputs, dfaTransition,
-                startState.toString(), new ArrayList<>(finalStates));
+                startState, new ArrayList<>(finalStates));
     }
 
     @Override

@@ -7,6 +7,6 @@ A 1 B
 B 1 C
 B $ D
 C 1 D
+E $ B C
 E 0 F
-E B C
 F 0 D

@@ -1,9 +1,9 @@
 package io;
 
-import entity.DFA;
-import entity.ENFA;
+import entity.impl.DFA;
+import entity.impl.ENFA;
 import entity.FiniteAutomata;
-import entity.NFA;
+import entity.impl.NFA;
 
 import java.io.*;
 import java.util.*;

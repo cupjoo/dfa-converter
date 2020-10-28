@@ -2,6 +2,7 @@ package entity;
 
 import entity.embedded.CompositeKey;
 import entity.embedded.MultipleState;
+import entity.impl.DFA;
 
 import java.util.*;
 
@@ -17,9 +18,8 @@ public abstract class AbstractNFA extends FiniteAutomata{
 
     public AbstractNFA(List<Character> inputs, List<List<String>> transition,
                        String startState, List<String> finalStates){
-        Queue<MultipleState> q = new ArrayDeque<>();
-
         setInputs(inputs);
+        Queue<MultipleState> q = new ArrayDeque<>();
         for(List<String> ts : transition){
             String from = ts.get(0);
             char input = ts.get(1).charAt(0);
@@ -27,6 +27,7 @@ public abstract class AbstractNFA extends FiniteAutomata{
             singleTransition.put(new CompositeKey(from, input), to);
         }
         setStartState(startState);
+
         // subset construction
         MultipleState state = getMultipleState(startState);
         states.add(state);
@@ -42,8 +43,9 @@ public abstract class AbstractNFA extends FiniteAutomata{
                 MultipleState next = new MultipleState();
                 for(String s : now.toList()){
                     MultipleState multipleState = singleTransition.get(new CompositeKey(s, in));
-                    if(multipleState != null)
+                    if(multipleState != null){
                         next.addAll(multipleStateToList(multipleState));
+                    }
                 }
                 if(!next.isEmpty()){
                     this.transition.put(key, next);
@@ -54,20 +56,20 @@ public abstract class AbstractNFA extends FiniteAutomata{
                 }
             }
         }
-        dfa = toDFA();
+        setDfa();
     }
 
-    abstract void setInputs(List<Character> inputs);
+    protected abstract void setInputs(List<Character> inputs);
 
-    abstract void setStartState(String startState);
+    protected abstract void setStartState(String startState);
 
-    abstract String multipleStateToString(MultipleState state);
+    protected abstract String multipleStateToString(MultipleState state);
 
-    abstract List<String> multipleStateToList(MultipleState state);
+    protected abstract List<String> multipleStateToList(MultipleState state);
 
-    abstract MultipleState getMultipleState(String startState);
+    protected abstract MultipleState getMultipleState(String startState);
 
-    protected DFA toDFA(){
+    private void setDfa(){
         List<String> dfaStates = states.stream()
                 .map(MultipleState::toString).collect(toList());
         List<List<String>> dfaTransition = new ArrayList<>();
@@ -79,8 +81,7 @@ public abstract class AbstractNFA extends FiniteAutomata{
             dfaTransition.add(ts);
         }
         String startState = this.startState.toString().replaceAll("\\s","");
-        return new DFA(dfaStates, inputs, dfaTransition,
-                startState, new ArrayList<>(finalStates));
+        dfa = new DFA(dfaStates, inputs, dfaTransition, startState, new ArrayList<>(finalStates));
     }
 
     @Override

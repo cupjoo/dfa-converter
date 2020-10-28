@@ -1,5 +1,6 @@
-package entity;
+package entity.impl;
 
+import entity.FiniteAutomata;
 import entity.embedded.CompositeKey;
 
 import java.util.*;

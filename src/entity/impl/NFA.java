@@ -1,10 +1,11 @@
-package entity;
+package entity.impl;
 
+import entity.AbstractNFA;
 import entity.embedded.MultipleState;
 
 import java.util.*;
 
-public class NFA extends AbstractNFA{
+public class NFA extends AbstractNFA {
 
     public NFA(List<Character> inputs, List<List<String>> transition,
                String startState, List<String> finalStates){
@@ -12,27 +13,27 @@ public class NFA extends AbstractNFA{
     }
 
     @Override
-    void setInputs(List<Character> inputs) {
+    protected void setInputs(List<Character> inputs) {
         this.inputs = inputs;
     }
 
     @Override
-    void setStartState(String startState) {
+    protected void setStartState(String startState) {
         this.startState.add(startState);
     }
 
     @Override
-    String multipleStateToString(MultipleState state) {
+    protected String multipleStateToString(MultipleState state) {
         return state.toString();
     }
 
     @Override
-    List<String> multipleStateToList(MultipleState state) {
+    protected List<String> multipleStateToList(MultipleState state) {
         return state.toList();
     }
 
     @Override
-    MultipleState getMultipleState(String startState) {
+    protected MultipleState getMultipleState(String startState) {
         return new MultipleState(startState);
     }
 }
